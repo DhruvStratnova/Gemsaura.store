@@ -1,5 +1,13 @@
 /* GemsAura hero slideshow + custom hamburger mega-menu (draft) */
 (function(){
+  /* Resolve the CURRENT theme's asset folder (t/7, t/8, ...) at runtime off a
+     stylesheet href. Hardcoding t/7 breaks any asset added to a newer theme. */
+  var GAABASE=(function(){
+    var l=document.querySelector('link[href*="/assets/gemsaura-custom.css"]');
+    return l ? l.href.replace(/assets\/gemsaura-custom\.css.*$/, 'assets/')
+             : 'https://cdn.shopify.com/s/files/1/0627/9849/5847/t/7/assets/';
+  })();
+  function GAA(n){ return GAABASE+n; }
   var D=["https://cdn.shopify.com/s/files/1/0627/9849/5847/t/7/assets/bn-zodiac-d.jpg", "https://cdn.shopify.com/s/files/1/0627/9849/5847/t/7/assets/bn-bracelets-d.jpg", "https://cdn.shopify.com/s/files/1/0627/9849/5847/t/7/assets/bn-rudraksha-d.jpg", "https://cdn.shopify.com/s/files/1/0627/9849/5847/t/7/assets/bn-pendants-d.jpg", "https://cdn.shopify.com/s/files/1/0627/9849/5847/t/7/assets/bn-anklets-d.jpg", "https://cdn.shopify.com/s/files/1/0627/9849/5847/t/7/assets/bn-mani-d.jpg"], M=["https://cdn.shopify.com/s/files/1/0627/9849/5847/t/7/assets/bn-zodiac-m.jpg?v=1789704491", "https://cdn.shopify.com/s/files/1/0627/9849/5847/t/7/assets/bn-bracelets-m.jpg?v=1789704496", "https://cdn.shopify.com/s/files/1/0627/9849/5847/t/7/assets/bn-rudraksha-m.jpg?v=1789704501", "https://cdn.shopify.com/s/files/1/0627/9849/5847/t/7/assets/bn-pendants-m.jpg?v=1789704506", "https://cdn.shopify.com/s/files/1/0627/9849/5847/t/7/assets/bn-anklets-m.jpg?v=1789704511", "https://cdn.shopify.com/s/files/1/0627/9849/5847/t/7/assets/bn-mani-m.jpg?v=1789704515"];
   function hero(){
     var h=document.querySelector('#MainContent[data-template="index"] > .shopify-section');
@@ -298,7 +306,7 @@
     if(_isCry && sec){
       sec.style.setProperty('--cat', '#7a5c9e');
       sec.classList.add('ga-coll-hascrystal');
-      var cry=document.createElement('div'); cry.className='ga-coll-crystal'; cry.innerHTML='<img src="https://cdn.shopify.com/s/files/1/0627/9849/5847/t/7/assets/ga-cosmic.webp?v=1789904898" alt="Crystal" loading="lazy">'; sec.appendChild(cry);
+      var cry=document.createElement('div'); cry.className='ga-coll-crystal'; cry.innerHTML='<img src="'+GAA('ga-cosmic.webp')+'" alt="Crystal" loading="lazy">'; sec.appendChild(cry);
       sec.addEventListener('mousemove', function(e){ var rr=sec.getBoundingClientRect(); var img=cry.querySelector('img'); if(!img) return; var px=(e.clientX-rr.left)/rr.width-0.5, py=(e.clientY-rr.top)/rr.height-0.5; img.style.transform='rotateY('+(px*20)+'deg) rotateX('+(-py*20)+'deg)'; });
       sec.addEventListener('mouseleave', function(){ var img=cry.querySelector('img'); if(img) img.style.transform='rotateY(0deg) rotateX(0deg)'; });
     }
@@ -342,7 +350,7 @@
     var _isGem=/\/collections\/gemstones/.test(location.pathname) || /gemstone/i.test(title.textContent||'');
     if(_isGem && sec && !sec.querySelector('.ga-coll-crystal')){
       sec.classList.add('ga-coll-hascrystal');
-      var gem=document.createElement('div'); gem.className='ga-coll-crystal'; gem.innerHTML='<img src="https://cdn.shopify.com/s/files/1/0627/9849/5847/t/7/assets/ga-gemstone.webp?v=1789905498" alt="Gemstone" loading="lazy">'; sec.appendChild(gem);
+      var gem=document.createElement('div'); gem.className='ga-coll-crystal'; gem.innerHTML='<img src="'+GAA('ga-gemstone.webp')+'" alt="Gemstone" loading="lazy">'; sec.appendChild(gem);
       sec.addEventListener('mousemove', function(e){ var rr=sec.getBoundingClientRect(); var img=gem.querySelector('img'); if(!img) return; var px=(e.clientX-rr.left)/rr.width-0.5, py=(e.clientY-rr.top)/rr.height-0.5; img.style.transform='rotateY('+(px*20)+'deg) rotateX('+(-py*20)+'deg)'; });
       sec.addEventListener('mouseleave', function(){ var img=gem.querySelector('img'); if(img) img.style.transform='rotateY(0deg) rotateX(0deg)'; });
     }
@@ -358,7 +366,7 @@
     var _isAnk=/\/collections\/anklet/.test(location.pathname) || /anklet/i.test(title.textContent||'');
     if(_isAnk && sec && !sec.querySelector('.ga-coll-crystal')){
       sec.classList.add('ga-coll-hascrystal');
-      var ank=document.createElement('div'); ank.className='ga-coll-crystal'; ank.innerHTML='<img src="https://cdn.shopify.com/s/files/1/0627/9849/5847/t/7/assets/ga-anklet.webp?v=1789929321" alt="Anklet" loading="lazy">'; sec.appendChild(ank);
+      var ank=document.createElement('div'); ank.className='ga-coll-crystal'; ank.innerHTML='<img src="'+GAA('ga-anklet.webp')+'" alt="Anklet" loading="lazy">'; sec.appendChild(ank);
       sec.addEventListener('mousemove', function(e){ var rr=sec.getBoundingClientRect(); var img=ank.querySelector('img'); if(!img) return; var px=(e.clientX-rr.left)/rr.width-0.5, py=(e.clientY-rr.top)/rr.height-0.5; img.style.transform='rotateY('+(px*20)+'deg) rotateX('+(-py*20)+'deg)'; });
       sec.addEventListener('mouseleave', function(){ var img=ank.querySelector('img'); if(img) img.style.transform='rotateY(0deg) rotateX(0deg)'; });
     }
