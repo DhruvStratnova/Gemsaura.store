@@ -30,17 +30,24 @@
   function collstrip(){
     var sec=document.querySelector('[id$="collection_list_FFV7jq"]');
     if(!sec || document.querySelector('.ga-collband')) return;
+    /* Resolve the live theme's asset folder at runtime (t/7, t/8, ...) off an
+       existing stylesheet link, so these never 404 when the theme changes. */
+    var GAB=(function(){
+      var l=document.querySelector('link[href*="/assets/gemsaura-custom.css"]');
+      return l ? l.href.replace(/assets\/gemsaura-custom\.css.*$/, 'assets/')
+               : 'https://cdn.shopify.com/s/files/1/0627/9849/5847/t/8/assets/';
+    })();
     var CATS=[
-      ['crystal-bracelets','Crystal Bracelet','Everyday energy','t/7/assets/ga-acc-crystal.jpg?v=1790012572','#7a5c9e'],
-      ['rashi-bracelets','Zodiac Bracelet','Your sign, your stone','t/7/assets/ga-acc-zodiac.jpg?v=1790012572','#4b4f9c'],
-      ['silver-bracelets','Silver Bracelet','Timeless & pure','t/7/assets/ga-acc-silver.jpg?v=1790012572','#51617a'],
-      ['rudraksha','Rudraksha','Sacred & grounding','t/7/assets/ga-acc-rudraksha.jpg?v=1790012572','#8a5a24'],
-      ['gemstones','Gemstone','Certified & natural','t/7/assets/ga-acc-gemstone.jpg?v=1790012572','#b23b2e'],
-      ['pendants','Pendant','Wear your intention','t/7/assets/ga-acc-pendant.jpg?v=1790012572','#b03e6b'],
-      ['anklets','Anklet','Subtle & sacred','t/7/assets/ga-acc-anklet.jpg?v=1790012572','#d05a6e'],
-      ['crystal-trees','Home Decor','Harmony at home','t/7/assets/ga-acc-tree.jpg?v=1790012572','#47804b']
+      ['crystal-bracelets','Crystal Bracelet','Everyday energy','ga-cat3d-crystal.jpg','#7a5c9e'],
+      ['rashi-bracelets','Zodiac Bracelet','Your sign, your stone','ga-cat3d-zodiac.jpg','#4b4f9c'],
+      ['silver-bracelets','Silver Bracelet','Timeless & pure','ga-cat3d-silver.jpg','#51617a'],
+      ['rudraksha','Rudraksha','Sacred & grounding','ga-cat3d-rudraksha.jpg','#8a5a24'],
+      ['gemstones','Gemstone','Certified & natural','ga-cat3d-gemstone.jpg','#b23b2e'],
+      ['pendants','Pendant','Wear your intention','ga-cat3d-pendant.jpg','#b03e6b'],
+      ['anklets','Anklet','Subtle & sacred','ga-cat3d-anklet.jpg','#d05a6e'],
+      ['crystal-trees','Home Decor','Harmony at home','ga-cat3d-tree.jpg','#47804b']
     ];
-    var cards=CATS.map(function(c){ return '<a class="ga-ap" href="/collections/'+c[0]+'" style="--gac:'+c[4]+'"><span class="ga-ap-im" style="background-image:url(https://cdn.shopify.com/s/files/1/0627/9849/5847/'+c[3]+')"></span><span class="ga-ap-shade"></span><span class="ga-ap-vt">'+c[1]+'</span><span class="ga-ap-lb"><span class="ga-ap-t">'+c[1]+'</span><span class="ga-ap-s">'+c[2]+'</span></span><span class="ga-ap-go">Shop \u2192</span></a>'; }).join('');
+    var cards=CATS.map(function(c){ return '<a class="ga-ap" href="/collections/'+c[0]+'" style="--gac:'+c[4]+'"><span class="ga-ap-im" style="background-image:url('+GAB+c[3]+')"></span><span class="ga-ap-shade"></span><span class="ga-ap-vt">'+c[1]+'</span><span class="ga-ap-lb"><span class="ga-ap-t">'+c[1]+'</span><span class="ga-ap-s">'+c[2]+'</span></span><span class="ga-ap-go">Shop \u2192</span></a>'; }).join('');
     var w=document.createElement('div'); w.className='ga-catsec';
     w.innerHTML='<div class=\"ga-collband-head ga-accord-head\"><span class=\"ga-collband-eyebrow\">Shop by category</span><h2 class=\"ga-collband-title\">Crafted for your energy</h2></div><div class=\"ga-accord\">'+cards+'</div>';
     sec.innerHTML=''; sec.appendChild(w); try{ gaReveal(w); }catch(e){}
