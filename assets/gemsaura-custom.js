@@ -38,14 +38,14 @@
                : 'https://cdn.shopify.com/s/files/1/0627/9849/5847/t/8/assets/';
     })();
     var CATS=[
-      ['crystal-bracelets','Crystal Bracelet','Everyday energy','ga-cat3d-crystal.jpg','#7a5c9e'],
-      ['rashi-bracelets','Zodiac Bracelet','Your sign, your stone','ga-cat3d-zodiac.jpg','#4b4f9c'],
-      ['silver-bracelets','Silver Bracelet','Timeless & pure','ga-cat3d-silver.jpg','#51617a'],
-      ['rudraksha','Rudraksha','Sacred & grounding','ga-cat3d-rudraksha.jpg','#8a5a24'],
-      ['gemstones','Gemstone','Certified & natural','ga-cat3d-gemstone.jpg','#b23b2e'],
-      ['pendants','Pendant','Wear your intention','ga-cat3d-pendant.jpg','#b03e6b'],
-      ['anklets','Anklet','Subtle & sacred','ga-cat3d-anklet.jpg','#d05a6e'],
-      ['crystal-trees','Home Decor','Harmony at home','ga-cat3d-tree.jpg','#47804b']
+      ['crystal-bracelets','Crystal Bracelet','Everyday energy','ga-crystal.webp','#7a5c9e'],
+      ['rashi-bracelets','Zodiac Bracelet','Your sign, your stone','ga-zodiac.webp','#4b4f9c'],
+      ['silver-bracelets','Silver Bracelet','Timeless & pure','ga-silver3d.webp','#51617a'],
+      ['rudraksha','Rudraksha','Sacred & grounding','ga-rudraksha.webp','#8a5a24'],
+      ['gemstones','Gemstone','Certified & natural','ga-gemstone.webp','#b23b2e'],
+      ['pendants','Pendant','Wear your intention','ga-pendant.webp','#b03e6b'],
+      ['anklets','Anklet','Subtle & sacred','ga-anklet.webp','#d05a6e'],
+      ['crystal-trees','Home Decor','Harmony at home','ga-tree3d.webp','#47804b']
     ];
     var cards=CATS.map(function(c){ return '<a class="ga-ap" href="/collections/'+c[0]+'" style="--gac:'+c[4]+'"><span class="ga-ap-im" style="background-image:url('+GAB+c[3]+'?v=3d2)"></span><span class="ga-ap-shade"></span><span class="ga-ap-vt">'+c[1]+'</span><span class="ga-ap-lb"><span class="ga-ap-t">'+c[1]+'</span><span class="ga-ap-s">'+c[2]+'</span></span><span class="ga-ap-go">Shop \u2192</span></a>'; }).join('');
     var w=document.createElement('div'); w.className='ga-catsec';
