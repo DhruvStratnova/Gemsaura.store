@@ -313,14 +313,14 @@
     var _isRud=/\/collections\/rudraksha/.test(location.pathname) || /rudraksha/i.test(title.textContent||'');
     if(_isRud && sec && !sec.querySelector('.ga-coll-crystal')){
       sec.classList.add('ga-coll-hascrystal');
-      var rud=document.createElement('div'); rud.className='ga-coll-crystal'; rud.innerHTML='<img src="https://cdn.shopify.com/s/files/1/0627/9849/5847/t/7/assets/ga-rudraksha.png?v=1789903387" alt="Rudraksha" loading="lazy">'; sec.appendChild(rud);
+      var rud=document.createElement('div'); rud.className='ga-coll-crystal'; rud.innerHTML='<img src='+GAA('ga-rudraksha.webp')+' alt="Rudraksha" loading="lazy">'; sec.appendChild(rud);
       sec.addEventListener('mousemove', function(e){ var rr=sec.getBoundingClientRect(); var img=rud.querySelector('img'); if(!img) return; var px=(e.clientX-rr.left)/rr.width-0.5, py=(e.clientY-rr.top)/rr.height-0.5; img.style.transform='rotateY('+(px*20)+'deg) rotateX('+(-py*20)+'deg)'; });
       sec.addEventListener('mouseleave', function(){ var img=rud.querySelector('img'); if(img) img.style.transform='rotateY(0deg) rotateX(0deg)'; });
     }
     var _isZod=/\/collections\/(rashi-bracelets|zodiac)/.test(location.pathname) || /zodiac|rashi/i.test(title.textContent||'');
     if(_isZod && sec && !sec.querySelector('.ga-coll-crystal')){
       sec.classList.add('ga-coll-hascrystal');
-      var zod=document.createElement('div'); zod.className='ga-coll-crystal'; zod.innerHTML='<img src="https://cdn.shopify.com/s/files/1/0627/9849/5847/t/7/assets/ga-zodiac.png?v=1789904903" alt="Zodiac" loading="lazy">'; sec.appendChild(zod);
+      var zod=document.createElement('div'); zod.className='ga-coll-crystal'; zod.innerHTML='<img src='+GAA('ga-zodiac.webp')+' alt="Zodiac" loading="lazy">'; sec.appendChild(zod);
       sec.addEventListener('mousemove', function(e){ var rr=sec.getBoundingClientRect(); var img=zod.querySelector('img'); if(!img) return; var px=(e.clientX-rr.left)/rr.width-0.5, py=(e.clientY-rr.top)/rr.height-0.5; img.style.transform='rotateY('+(px*20)+'deg) rotateX('+(-py*20)+'deg)'; });
       sec.addEventListener('mouseleave', function(){ var img=zod.querySelector('img'); if(img) img.style.transform='rotateY(0deg) rotateX(0deg)'; });
     }
@@ -358,9 +358,17 @@
     var _isPen=/\/collections\/pendant/.test(location.pathname) || /pendant/i.test(title.textContent||'');
     if(_isPen && sec && !sec.querySelector('.ga-coll-crystal')){
       sec.classList.add('ga-coll-hascrystal');
-      var pen=document.createElement('div'); pen.className='ga-coll-crystal ga-coll-portrait'; pen.innerHTML='<img src="https://cdn.shopify.com/s/files/1/0627/9849/5847/t/7/assets/ga-pendant.png?v=1789928805" alt="Pendant" loading="lazy">'; sec.appendChild(pen);
+      var pen=document.createElement('div'); pen.className='ga-coll-crystal ga-coll-portrait'; pen.innerHTML='<img src='+GAA('ga-pendant.webp')+' alt="Pendant" loading="lazy">'; sec.appendChild(pen);
       sec.addEventListener('mousemove', function(e){ var rr=sec.getBoundingClientRect(); var img=pen.querySelector('img'); if(!img) return; var px=(e.clientX-rr.left)/rr.width-0.5, py=(e.clientY-rr.top)/rr.height-0.5; img.style.transform='rotateY('+(px*20)+'deg) rotateX('+(-py*20)+'deg)'; });
       sec.addEventListener('mouseleave', function(){ var img=pen.querySelector('img'); if(img) img.style.transform='rotateY(0deg) rotateX(0deg)'; });
+    }
+
+    var _isTree=/\/collections\/crystal-tree/.test(location.pathname) || /home decor|crystal tree/i.test(title.textContent||'');
+    if(_isTree && sec && !sec.querySelector('.ga-coll-crystal')){
+      sec.classList.add('ga-coll-hascrystal');
+      var tre=document.createElement('div'); tre.className='ga-coll-crystal'; tre.innerHTML='<img src="'+GAA('ga-tree3d.webp')+'" alt="Home Decor" loading="lazy">'; sec.appendChild(tre);
+      sec.addEventListener('mousemove', function(e){ var rr=sec.getBoundingClientRect(); var img=tre.querySelector('img'); if(!img) return; var px=(e.clientX-rr.left)/rr.width-0.5, py=(e.clientY-rr.top)/rr.height-0.5; img.style.transform='rotateY('+(px*20)+'deg) rotateX('+(-py*20)+'deg)'; });
+      sec.addEventListener('mouseleave', function(){ var img=tre.querySelector('img'); if(img) img.style.transform='rotateY(0deg) rotateX(0deg)'; });
     }
 
     var _isAnk=/\/collections\/anklet/.test(location.pathname) || /anklet/i.test(title.textContent||'');

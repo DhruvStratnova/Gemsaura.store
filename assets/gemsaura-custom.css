@@ -1917,3 +1917,18 @@ product-card, .ga-ap{ }
 .ga-ap-vt{ z-index:1 !important; }
 .ga-ap-im{ z-index:2 !important; }
 .ga-ap-lb{ z-index:3 !important; }
+
+
+/* ============================================================
+   Category tile: centred label with the 3D model floating above
+   ============================================================ */
+.ga-ap-lb{ text-align:center !important; left:0 !important; right:0 !important; width:100% !important; }
+.ga-ap-t{ display:block !important; text-align:center !important; }
+.ga-ap-s{ display:block !important; text-align:center !important; }
+.ga-ap-go{ left:50% !important; transform:translateX(-50%) !important; }
+.ga-ap:hover .ga-ap-go{ transform:translateX(-50%) !important; }
+
+@media(max-width:820px){
+  .ga-ap-lb{ text-align:center !important; padding:0 8px 10px !important; }
+  .ga-ap-s{ display:none !important; }
+}
