@@ -7,7 +7,8 @@
     return l ? l.href.replace(/assets\/gemsaura-custom\.css.*$/, 'assets/')
              : 'https://cdn.shopify.com/s/files/1/0627/9849/5847/t/7/assets/';
   })();
-  function GAA(n){ return GAABASE+n; }
+  var GAAV='4';                      /* bump when a model is re-cut under the same filename */
+  function GAA(n){ return GAABASE+n+'?v='+GAAV; }
   var D=["https://cdn.shopify.com/s/files/1/0627/9849/5847/t/7/assets/bn-zodiac-d.jpg", "https://cdn.shopify.com/s/files/1/0627/9849/5847/t/7/assets/bn-bracelets-d.jpg", "https://cdn.shopify.com/s/files/1/0627/9849/5847/t/7/assets/bn-rudraksha-d.jpg", "https://cdn.shopify.com/s/files/1/0627/9849/5847/t/7/assets/bn-pendants-d.jpg", "https://cdn.shopify.com/s/files/1/0627/9849/5847/t/7/assets/bn-anklets-d.jpg", "https://cdn.shopify.com/s/files/1/0627/9849/5847/t/7/assets/bn-mani-d.jpg"], M=["https://cdn.shopify.com/s/files/1/0627/9849/5847/t/7/assets/bn-zodiac-m.jpg?v=1789704491", "https://cdn.shopify.com/s/files/1/0627/9849/5847/t/7/assets/bn-bracelets-m.jpg?v=1789704496", "https://cdn.shopify.com/s/files/1/0627/9849/5847/t/7/assets/bn-rudraksha-m.jpg?v=1789704501", "https://cdn.shopify.com/s/files/1/0627/9849/5847/t/7/assets/bn-pendants-m.jpg?v=1789704506", "https://cdn.shopify.com/s/files/1/0627/9849/5847/t/7/assets/bn-anklets-m.jpg?v=1789704511", "https://cdn.shopify.com/s/files/1/0627/9849/5847/t/7/assets/bn-mani-m.jpg?v=1789704515"];
   function hero(){
     var h=document.querySelector('#MainContent[data-template="index"] > .shopify-section');
@@ -55,7 +56,7 @@
       ['anklets','Anklet','Subtle & sacred','ga-anklet.webp','#d05a6e'],
       ['crystal-trees','Home Decor','Harmony at home','ga-tree3d.webp','#47804b']
     ];
-    var cards=CATS.map(function(c){ return '<a class="ga-ap" href="/collections/'+c[0]+'" style="--gac:'+c[4]+'"><span class="ga-ap-im" style="background-image:url('+GAB+c[3]+'?v=3d2)"></span><span class="ga-ap-shade"></span><span class="ga-ap-vt">'+c[1]+'</span><span class="ga-ap-lb"><span class="ga-ap-t">'+c[1]+'</span><span class="ga-ap-s">'+c[2]+'</span></span><span class="ga-ap-go">Shop \u2192</span></a>'; }).join('');
+    var cards=CATS.map(function(c){ return '<a class="ga-ap" href="/collections/'+c[0]+'" style="--gac:'+c[4]+'"><span class="ga-ap-im" style="background-image:url('+GAA(c[3])+')"></span><span class="ga-ap-shade"></span><span class="ga-ap-vt">'+c[1]+'</span><span class="ga-ap-lb"><span class="ga-ap-t">'+c[1]+'</span><span class="ga-ap-s">'+c[2]+'</span></span><span class="ga-ap-go">Shop \u2192</span></a>'; }).join('');
     var w=document.createElement('div'); w.className='ga-catsec';
     w.innerHTML='<div class=\"ga-collband-head ga-accord-head\"><span class=\"ga-collband-eyebrow\">Shop by category</span><h2 class=\"ga-collband-title\">Crafted for your energy</h2></div><div class=\"ga-accord\">'+cards+'</div>';
     sec.innerHTML=''; sec.appendChild(w); try{ gaReveal(w); }catch(e){}
