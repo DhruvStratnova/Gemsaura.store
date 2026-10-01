@@ -166,6 +166,8 @@ product-card.ga-gcard .product-badges{ display:none !important; }
 product-card.ga-gcard{ position:relative; display:block; border:none !important; border-radius:22px; overflow:hidden; aspect-ratio:0.74; background:#ece6dc; box-shadow:0 18px 42px -24px rgba(40,30,20,.5); transition:transform .35s cubic-bezier(.2,.7,.2,1), box-shadow .35s ease; height:auto; }
 product-card.ga-gcard:hover{ transform:translateY(-5px); box-shadow:0 28px 56px -26px rgba(40,30,20,.55); }
 product-card.ga-gcard .product-card__content{ position:absolute !important; inset:0 !important; padding:0 !important; display:block !important; }
+/* Hide the theme's native quick-add + price inside the glass card — the ga-glass supplies its own price + "+ Add", so the theme copy must not bleed through behind the glass. */
+product-card.ga-gcard quick-add-component, product-card.ga-gcard .quick-add, product-card.ga-gcard .product-card__content > product-price, product-card.ga-gcard .product-card__content .price:not(.ga-price){ display:none !important; }
 product-card.ga-gcard .card-gallery{ position:absolute !important; inset:0 !important; margin:0 !important; border-radius:0 !important; }
 product-card.ga-gcard .card-gallery a, product-card.ga-gcard .product-media-container{ width:100% !important; height:100% !important; }
 product-card.ga-gcard .card-gallery img{ width:100% !important; height:100% !important; object-fit:cover !important; transition:transform .6s ease; }
@@ -182,8 +184,8 @@ product-card.ga-gcard:hover .card-gallery img{ transform:scale(1.03); }
 .ga-gcard .ga-cardfoot .group-block, .ga-gcard .ga-cardfoot .price{ margin:0 !important; padding:0 !important; }
 .ga-gcard .price-item--sale, .ga-gcard .price-item:not(.price-item--regular){ font-weight:700 !important; font-size:17px !important; color:#1a1a1a !important; }
 .ga-gcard .price-item--regular, .ga-gcard s, .ga-gcard del, .ga-gcard .price__compare{ font-size:12.5px !important; color:#a49a8c !important; text-decoration:line-through !important; }
-.ga-gcard .ga-price{ display:flex !important; align-items:baseline !important; gap:8px !important; flex-wrap:wrap; }
-.ga-gcard .ga-add{ flex:none; display:inline-flex; align-items:center; gap:5px; background:var(--gac,#1c2a22); color:#fff; text-decoration:none; padding:10px 18px; border-radius:999px; font:700 12px var(--font-body--family,sans-serif); box-shadow:0 8px 20px -10px var(--gac); transition:transform .2s ease, filter .2s ease; }
+.ga-gcard .ga-price{ display:flex !important; align-items:baseline !important; gap:6px !important; flex-wrap:wrap; min-width:0 !important; flex:1 1 auto !important; }
+.ga-gcard .ga-add{ flex:0 0 auto; white-space:nowrap; display:inline-flex; align-items:center; gap:5px; background:var(--gac,#1c2a22); color:#fff; text-decoration:none; padding:10px 16px; border-radius:999px; font:700 12px var(--font-body--family,sans-serif); box-shadow:0 8px 20px -10px var(--gac); transition:transform .2s ease, filter .2s ease; }
 .ga-gcard .ga-add:hover{ transform:translateY(-1px); filter:brightness(1.06); }
 @media(max-width:749px){ .ga-gcard .ga-glass{ padding:12px 13px 13px; } .ga-gcard .ga-glass h3{ font-size:13.5px !important; } .ga-gcard .ga-add{ padding:9px 14px; font-size:11px; } }
 
@@ -726,7 +728,7 @@ html.gcart-lock{ overflow:hidden; }
 /* amethyst header badge */
 cart-icon{ position:relative; display:inline-flex; }
 button[aria-label="Cart"]{ overflow:visible !important; }
-.gcart-badge{ position:absolute; top:22px; right:4px; min-width:16px; height:16px; padding:0 4px; border-radius:999px; background:#141414; color:#fff; font:700 10px var(--font-body--family, sans-serif); line-height:1; display:inline-flex; align-items:center; justify-content:center; box-shadow:0 2px 8px -2px rgba(28,42,34,.55); border:1.5px solid rgba(245,240,232,.95); pointer-events:none; box-sizing:border-box; }
+.gcart-badge{ position:absolute; top:3px; right:3px; min-width:16px; height:16px; padding:0 4px; border-radius:999px; background:#141414; color:#fff; font:700 10px var(--font-body--family, sans-serif); line-height:1; display:inline-flex; align-items:center; justify-content:center; box-shadow:0 2px 8px -2px rgba(28,42,34,.55); border:1.5px solid rgba(245,240,232,.95); pointer-events:none; box-sizing:border-box; }
 .gcart-badge.pop{ animation:gcart-badge-pop .55s cubic-bezier(.2,1.5,.4,1); }
 @keyframes gcart-badge-pop{ 0%,100%{transform:scale(1)} 40%{transform:scale(1.45)} }
 @media(max-width:520px){ .gcart-panel{ width:100vw; } }
@@ -1813,8 +1815,8 @@ html{ -webkit-text-size-adjust:100%; }
 }
 
 /* Card polish: bigger image, contained add button */
-.ga-gcard .ga-glass .ga-title{ margin-bottom:9px; min-height:0 !important; }
-.ga-gcard .ga-cardfoot{ flex-wrap:wrap; row-gap:8px; }
+.ga-gcard .ga-glass .ga-title{ margin-bottom:9px; min-height:2.55em !important; }
+.ga-gcard .ga-cardfoot{ flex-wrap:nowrap; row-gap:0; gap:10px; }
 @media(max-width:749px){
   .ga-gcard .ga-glass{ padding:11px 12px 12px !important; }
   .ga-gcard .ga-glass .ga-title{ font-size:13px !important; -webkit-line-clamp:2; margin-bottom:8px; }

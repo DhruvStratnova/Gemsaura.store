@@ -28,27 +28,14 @@
   # case where a card swatch click resolves the variant, so JS can flip choose -> add
   # without navigating. Every other shape is fixed at render, so it gets just one button.
   # Selling plans always go to the PDP, since subscription widgets only run there.
-  assign initial_button = 'choose'
-  assign render_add = false
+  # GemsAura: always add the default (first available) variant directly from the card,
+  # no "Choose an option" modal. Specs still show in the cart drawer (variant_title)
+  # and the exact variant is captured on the order.
+  assign initial_button = 'add'
+  assign render_add = true
   assign render_choose = false
 
-  if product.variants_count == 1
-    assign initial_button = 'add'
-    assign render_add = true
-  elsif product.options.size == 1
-    assign first_option = product.options_with_values | first
-    assign swatch_count = first_option.values | map: 'swatch' | compact | size
-    assign render_choose = true
-    if product.selected_variant.available
-      assign initial_button = 'add'
-      assign render_add = true
-    elsif swatch_count > 0
-      assign render_add = true
-    endif
-  else
-    assign render_choose = true
-  endif
-
+  # Subscriptions genuinely need the PDP, so those still go to Choose.
   if uses_selling_plans
     assign initial_button = 'choose'
     assign render_add = false
