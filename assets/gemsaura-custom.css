@@ -1594,17 +1594,17 @@ product-card button, .ga-gcard button, .ga-add, .product-card button, .card-gall
 .ga-ap:hover .ga-ap-vt, .ga-accord:not(:hover) .ga-ap:first-child .ga-ap-vt{ opacity:0; letter-spacing:.2em; }
 /* mobile: swipeable rail, every panel open horizontally */
 @media(max-width:820px){
-  /* mobile: stacked full-width banner rows, big left title over the product image */
-  .ga-catsec{ padding:2px 14px 26px; }
-  .ga-accord{ display:flex; flex-direction:column; height:auto; overflow:visible; gap:10px; }
-  .ga-ap{ flex:none; width:100%; height:clamp(96px,25vw,124px); border-radius:16px; box-shadow:0 14px 28px -22px rgba(40,30,20,.5); }
-  .ga-ap:first-child{ height:clamp(132px,36vw,168px); }
-  .ga-ap-im{ transform:none !important; background-position:72% center !important; }
-  .ga-ap-shade{ background:linear-gradient(to right, color-mix(in srgb, var(--gac,#14100a) 93%, #0a0604) 3%, color-mix(in srgb, var(--gac,#14100a) 58%, transparent) 40%, color-mix(in srgb, var(--gac,#14100a) 8%, transparent) 66%, transparent 84%) !important; }
+  /* MOBILE: compact 2-col category grid (was 8 stacked banners ~990px tall -> ~500px) */
+  .ga-catsec{ padding:2px var(--ga-gut) 24px; }
+  .ga-accord{ display:grid !important; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; height:auto !important; overflow:visible; }
+  .ga-ap{ flex:none !important; width:auto !important; height:auto !important; aspect-ratio:1/.62; border-radius:15px; box-shadow:0 12px 24px -18px rgba(40,30,20,.5); }
+  .ga-ap:first-child{ flex:none !important; width:auto !important; height:auto !important; aspect-ratio:1/.62; box-shadow:0 12px 24px -18px rgba(40,30,20,.5); }
+  .ga-ap-im{ transform:none !important; background-position:center !important; }
+  .ga-ap-shade{ background:linear-gradient(to top, color-mix(in srgb, var(--gac,#14100a) 92%, #0a0604) 0%, color-mix(in srgb, var(--gac,#14100a) 52%, transparent) 48%, transparent 88%) !important; }
   .ga-ap-vt{ opacity:0 !important; }
-  .ga-ap-lb{ opacity:1 !important; top:50%; bottom:auto; transform:translateY(-50%); padding:0 20px; width:72%; }
-  .ga-ap-t{ font-family:'Anton','Impact','Haettenschweiler','Arial Narrow',sans-serif; font-weight:400; text-transform:uppercase; font-size:clamp(25px,6.6vw,36px); letter-spacing:.02em; line-height:1.02; color:rgba(255,255,255,.22); -webkit-text-stroke:1.2px rgba(255,255,255,.95); text-stroke:1.2px rgba(255,255,255,.95); text-shadow:0 2px 9px rgba(0,0,0,.5); }
-  .ga-ap-s{ opacity:1 !important; margin-top:4px; font-size:12px; color:rgba(255,255,255,.9); }
+  .ga-ap-lb{ opacity:1 !important; top:auto; bottom:0; transform:none; width:100%; padding:0 11px 11px; }
+  .ga-ap-t{ font-family:'Anton','Impact','Haettenschweiler','Arial Narrow',sans-serif; font-weight:400; text-transform:uppercase; font-size:clamp(13px,3.6vw,17px); letter-spacing:.015em; line-height:1.05; white-space:normal; color:#fff; -webkit-text-stroke:0 !important; text-stroke:0 !important; text-shadow:0 1px 9px rgba(0,0,0,.6); }
+  .ga-ap-s{ display:none !important; }
   .ga-ap-go{ opacity:0 !important; }
 }
 
@@ -1829,3 +1829,35 @@ html{ -webkit-text-size-adjust:100%; }
 /* Boot cloak: hide homepage until custom build is ready (no native-section flash) */
 #MainContent[data-template="index"]{ opacity:0; transition:opacity .5s ease; }
 html.ga-hp-ready #MainContent[data-template="index"]{ opacity:1; }
+
+
+/* ============================================================
+   GEMSAURA — LOCKED RESPONSIVE SYSTEM (mobile first)
+   One gutter token + fluid type so alignment is identical on
+   every device, and no browser text-inflation / focus zoom.
+   ============================================================ */
+:root{ --ga-gut: clamp(16px, 4.6vw, 48px); }
+
+/* Stop iOS/Android inflating text in landscape (the "zoom in" look) */
+html{ -webkit-text-size-adjust:100%; text-size-adjust:100%; }
+
+/* Section headings: fluid size + balanced wrap so they never orphan a word
+   or jump to a second line only on some widths. */
+.ga-collband-title, .ga-accord-head .ga-collband-title{
+  font-size: clamp(21px, 5.4vw, 40px);
+  line-height: 1.12;
+  text-wrap: balance;
+  overflow-wrap: break-word;
+}
+.ga-collband-eyebrow{ font-size: clamp(10px, 2.6vw, 11px); letter-spacing:.24em; }
+
+/* Band gutters use the single token -> left edges line up across sections */
+.ga-catsec, .ga-collband{ padding-left: var(--ga-gut); padding-right: var(--ga-gut); box-sizing:border-box; }
+.ga-catsec .ga-accord-head, .ga-collband .ga-collband-head{ padding-left:0; padding-right:0; }
+
+@media(max-width:749px){
+  /* iOS zooms the page when a <16px input is focused — pin to 16px to prevent it */
+  input, select, textarea{ font-size:16px !important; }
+  /* nothing may push the page sideways on a phone */
+  .ga-catsec, .ga-collband, .ga-catsec *, .ga-collband *{ max-width:100%; }
+}
